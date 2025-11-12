@@ -1,63 +1,8 @@
 'use client'
 
-import { useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import * as z from 'zod'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 
-const formSchema = z.object({
-  name: z.string().min(2, 'Name must be at least 2 characters'),
-  email: z.string().email('Invalid email address'),
-  phone: z.string().optional(),
-  message: z.string().min(10, 'Message must be at least 10 characters'),
-})
-
-type FormData = z.infer<typeof formSchema>
-
 export function ContactForm() {
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
-
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<FormData>({
-    resolver: zodResolver(formSchema),
-  })
-
-  const onSubmit = async (data: FormData) => {
-    setIsSubmitting(true)
-    setSubmitStatus('idle')
-
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      })
-
-      if (response.ok) {
-        setSubmitStatus('success')
-        reset()
-      } else {
-        setSubmitStatus('error')
-      }
-    } catch (error) {
-      console.error('Form submission error:', error)
-      setSubmitStatus('error')
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
-
   return (
     <Card className="max-w-2xl mx-auto">
       <CardHeader>
@@ -67,47 +12,54 @@ export function ContactForm() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <form
+          action="https://formspree.io/f/mzzybwpw"
+          method="POST"
+          className="space-y-4"
+        >
+          {/* Hidden fields for Formspree */}
+          <input type="hidden" name="_subject" value="Website Enquiry - Binfab Bins" />
+          <input type="text" name="_gotcha" style={{ display: 'none' }} />
+          <input type="hidden" name="_next" value="https://binfabbins.com.au/thank-you" />
+
           <div>
             <label htmlFor="name" className="block text-sm font-medium mb-2">
               Name <span className="text-red-500">*</span>
             </label>
-            <Input
+            <input
+              type="text"
               id="name"
-              {...register('name')}
+              name="name"
+              required
               placeholder="Your name"
-              className={errors.name ? 'border-red-500' : ''}
+              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
             />
-            {errors.name && (
-              <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
-            )}
           </div>
 
           <div>
             <label htmlFor="email" className="block text-sm font-medium mb-2">
               Email <span className="text-red-500">*</span>
             </label>
-            <Input
-              id="email"
+            <input
               type="email"
-              {...register('email')}
+              id="email"
+              name="_replyto"
+              required
               placeholder="your.email@example.com"
-              className={errors.email ? 'border-red-500' : ''}
+              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
             />
-            {errors.email && (
-              <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
-            )}
           </div>
 
           <div>
             <label htmlFor="phone" className="block text-sm font-medium mb-2">
               Phone (optional)
             </label>
-            <Input
-              id="phone"
+            <input
               type="tel"
-              {...register('phone')}
+              id="phone"
+              name="phone"
               placeholder="0400 000 000"
+              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
             />
           </div>
 
@@ -115,37 +67,22 @@ export function ContactForm() {
             <label htmlFor="message" className="block text-sm font-medium mb-2">
               Message <span className="text-red-500">*</span>
             </label>
-            <Textarea
+            <textarea
               id="message"
-              {...register('message')}
+              name="message"
+              required
               placeholder="Tell us about your bin requirements..."
               rows={6}
-              className={errors.message ? 'border-red-500' : ''}
+              className="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
             />
-            {errors.message && (
-              <p className="text-red-500 text-sm mt-1">{errors.message.message}</p>
-            )}
           </div>
 
-          {submitStatus === 'success' && (
-            <div className="p-4 bg-green-50 border border-green-200 rounded-lg text-green-800">
-              Thank you for your message! We&apos;ll get back to you soon.
-            </div>
-          )}
-
-          {submitStatus === 'error' && (
-            <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-800">
-              Sorry, there was an error sending your message. Please try again or call us directly.
-            </div>
-          )}
-
-          <Button
+          <button
             type="submit"
-            disabled={isSubmitting}
-            className="w-full bg-[#1a2847] hover:bg-[#2d3748]"
+            className="w-full inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-[#1a2847] text-white hover:bg-[#2d3748] h-10 px-4 py-2"
           >
-            {isSubmitting ? 'Sending...' : 'Send Message'}
-          </Button>
+            Send Message
+          </button>
         </form>
       </CardContent>
     </Card>

@@ -33,7 +33,7 @@ export default function HomePage() {
           </div>
 
           <div className="text-center">
-            <Button asChild size="lg" className="bg-[#1a2847] hover:bg-[#2d3748]">
+            <Button asChild size="lg" className="bg-[#1a2847] hover:bg-[#2d3748] text-white">
               <Link href="/products">View All Products</Link>
             </Button>
           </div>

@@ -1,3 +1,4 @@
+// Updated: 2025-11-12
 import { Hero } from '@/components/layout/Hero'
 import { ProductCard } from '@/components/ui/ProductCard'
 import { TestimonialCard } from '@/components/ui/TestimonialCard'

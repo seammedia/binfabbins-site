@@ -5,11 +5,11 @@
       "has": [
         {
           "type": "host",
-          "value": "www.binfabbins.com.au"
+          "value": "binfabbins.com.au"
         }
       ],
-      "destination": "https://binfabbins.com.au/:path*",
-      "permanent": true
+      "destination": "https://www.binfabbins.com.au/:path*",
+      "permanent": false
     }
   ],
   "headers": [

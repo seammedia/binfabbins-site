@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Phone } from 'lucide-react'
+import { Phone, Mail, MapPin } from 'lucide-react'
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -48,13 +48,26 @@ export function Footer() {
 
           <div>
             <h3 className="text-xl font-bold mb-4">Contact</h3>
-            <a
-              href="tel:0478598242"
-              className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
-            >
-              <Phone className="h-5 w-5" />
-              0478 598 242
-            </a>
+            <div className="space-y-3">
+              <a
+                href="tel:0478598242"
+                className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
+              >
+                <Phone className="h-5 w-5 shrink-0" />
+                0478 598 242
+              </a>
+              <a
+                href="mailto:mark@binfab.net"
+                className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
+              >
+                <Mail className="h-5 w-5 shrink-0" />
+                mark@binfab.net
+              </a>
+              <div className="flex items-start gap-2 text-gray-400">
+                <MapPin className="h-5 w-5 shrink-0 mt-0.5" />
+                <span>11-13 Powers Rd, Seven Hills NSW</span>
+              </div>
+            </div>
           </div>
         </div>
 

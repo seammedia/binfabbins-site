@@ -1,10 +1,10 @@
 import type { Metadata } from 'next'
 import { ContactForm } from '@/components/ContactForm'
-import { Phone, MapPin } from 'lucide-react'
+import { Phone, MapPin, Mail } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'Contact Us - Binfab Bins',
-  description: 'Get in touch with Binfab Bins for quality waste bins, competitive pricing and quick supply. Call 0478 598 242 or fill out our contact form.',
+  description: 'Get in touch with Binfab Bins for quality waste bins, competitive pricing and quick supply. Call 0478 598 242, email mark@binfab.net or fill out our contact form.',
 }
 
 export default function ContactPage() {
@@ -51,11 +51,29 @@ export default function ContactPage() {
 
                 <div className="flex items-start gap-4">
                   <div className="bg-[#1a2847] text-white p-3 rounded-lg">
+                    <Mail className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-lg mb-2">Email</h3>
+                    <a
+                      href="mailto:mark@binfab.net"
+                      className="text-[#1a2847] hover:underline text-lg"
+                    >
+                      mark@binfab.net
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="bg-[#1a2847] text-white p-3 rounded-lg">
                     <MapPin className="h-6 w-6" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-lg mb-2">Location</h3>
+                    <h3 className="font-bold text-lg mb-2">Address</h3>
                     <p className="text-gray-700">
+                      11-13 Powers Rd, Seven Hills NSW
+                    </p>
+                    <p className="text-gray-600 mt-1">
                       Serving Australia-wide
                     </p>
                   </div>

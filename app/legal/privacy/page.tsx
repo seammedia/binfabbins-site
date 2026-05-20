@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <div className="min-h-screen">
-      <div className="bg-[#1a2847] text-white py-16 px-4">
+      <div className="bg-[#2b4c9e] text-white py-16 px-4">
         <div className="container mx-auto">
           <h1 className="text-5xl font-bold mb-4">Privacy Policy</h1>
         </div>
@@ -69,7 +69,7 @@ export default function PrivacyPage() {
             If you have any questions about this Privacy Policy, please contact us at:
           </p>
           <p>
-            Phone: <a href="tel:0478598242" className="text-[#1a2847]">0478 598 242</a>
+            Phone: <a href="tel:0478598242" className="text-[#2b4c9e]">0478 598 242</a>
           </p>
         </div>
       </section>

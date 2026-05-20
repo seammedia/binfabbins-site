@@ -25,13 +25,13 @@ export function ProductCard({ product }: ProductCardProps) {
           />
         </div>
       </CardHeader>
-      <CardContent className="p-6 bg-[#2d3748] text-white">
+      <CardContent className="p-6 bg-[#3558ae] text-white">
         <CardTitle className="text-xl mb-3">{product.title}</CardTitle>
         <CardDescription className="text-gray-300 leading-relaxed">
           {product.description}
         </CardDescription>
       </CardContent>
-      <CardFooter className="p-6 pt-0 bg-[#2d3748] gap-3">
+      <CardFooter className="p-6 pt-0 bg-[#3558ae] gap-3">
         {hasDetailPage && (
           <Button
             variant="ghost"

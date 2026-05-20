@@ -26,11 +26,11 @@ export default function ThankYouPage() {
           <div className="space-y-4">
             <p className="text-sm text-gray-500">
               Need immediate assistance?<br />
-              Call us at <a href="tel:0478598242" className="text-[#1a2847] font-semibold hover:underline">0478 598 242</a>
+              Call us at <a href="tel:0478598242" className="text-[#2b4c9e] font-semibold hover:underline">0478 598 242</a>
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild className="bg-[#1a2847] hover:bg-[#2d3748] text-white">
+              <Button asChild className="bg-[#2b4c9e] hover:bg-[#3558ae] text-white">
                 <Link href="/">Return Home</Link>
               </Button>
               <Button asChild variant="outline">

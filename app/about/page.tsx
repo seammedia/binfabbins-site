@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <div className="min-h-screen">
-      <div className="bg-[#1a2847] text-white py-16 px-4">
+      <div className="bg-[#2b4c9e] text-white py-16 px-4">
         <div className="container mx-auto">
           <h1 className="text-5xl font-bold mb-4">About Us</h1>
         </div>
@@ -34,35 +34,35 @@ export default function AboutPage() {
               <h2 className="text-2xl font-bold mb-4">Our Range Includes:</h2>
               <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <li className="flex items-center gap-2">
-                  <span className="text-[#1a2847] font-bold">•</span>
+                  <span className="text-[#2b4c9e] font-bold">•</span>
                   HOOKLIFT BINS
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="text-[#1a2847] font-bold">•</span>
+                  <span className="text-[#2b4c9e] font-bold">•</span>
                   MARRELL BINS
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="text-[#1a2847] font-bold">•</span>
+                  <span className="text-[#2b4c9e] font-bold">•</span>
                   CRANE BINS
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="text-[#1a2847] font-bold">•</span>
+                  <span className="text-[#2b4c9e] font-bold">•</span>
                   FORKLIFT BINS
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="text-[#1a2847] font-bold">•</span>
+                  <span className="text-[#2b4c9e] font-bold">•</span>
                   TIPPLER BINS
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="text-[#1a2847] font-bold">•</span>
+                  <span className="text-[#2b4c9e] font-bold">•</span>
                   REAR LIFT BINS
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="text-[#1a2847] font-bold">•</span>
+                  <span className="text-[#2b4c9e] font-bold">•</span>
                   FRONTLIFT BINS
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="text-[#1a2847] font-bold">•</span>
+                  <span className="text-[#2b4c9e] font-bold">•</span>
                   MGB PLASTIC BINS
                 </li>
               </ul>
@@ -89,7 +89,7 @@ export default function AboutPage() {
                 If you require quality waste bins, competitive pricing and quick supply please contact us at Binfab.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button asChild size="lg" className="bg-[#1a2847] hover:bg-[#2d3748]">
+                <Button asChild size="lg" className="bg-[#2b4c9e] hover:bg-[#3558ae]">
                   <Link href="/contact">Contact Us</Link>
                 </Button>
                 <Button asChild size="lg" variant="outline">

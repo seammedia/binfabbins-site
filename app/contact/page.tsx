@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <div className="min-h-screen">
-      <div className="bg-[#1a2847] text-white py-16 px-4">
+      <div className="bg-[#2b4c9e] text-white py-16 px-4">
         <div className="container mx-auto">
           <h1 className="text-5xl font-bold mb-4">Contact Us</h1>
           <p className="text-xl text-gray-300">
@@ -32,14 +32,14 @@ export default function ContactPage() {
 
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
-                  <div className="bg-[#1a2847] text-white p-3 rounded-lg">
+                  <div className="bg-[#2b4c9e] text-white p-3 rounded-lg">
                     <Phone className="h-6 w-6" />
                   </div>
                   <div>
                     <h3 className="font-bold text-lg mb-2">Phone</h3>
                     <a
                       href="tel:0478598242"
-                      className="text-[#1a2847] hover:underline text-lg"
+                      className="text-[#2b4c9e] hover:underline text-lg"
                     >
                       0478 598 242
                     </a>
@@ -50,14 +50,14 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="bg-[#1a2847] text-white p-3 rounded-lg">
+                  <div className="bg-[#2b4c9e] text-white p-3 rounded-lg">
                     <Mail className="h-6 w-6" />
                   </div>
                   <div>
                     <h3 className="font-bold text-lg mb-2">Email</h3>
                     <a
                       href="mailto:mark@binfab.net"
-                      className="text-[#1a2847] hover:underline text-lg"
+                      className="text-[#2b4c9e] hover:underline text-lg"
                     >
                       mark@binfab.net
                     </a>
@@ -65,7 +65,7 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="bg-[#1a2847] text-white p-3 rounded-lg">
+                  <div className="bg-[#2b4c9e] text-white p-3 rounded-lg">
                     <MapPin className="h-6 w-6" />
                   </div>
                   <div>
@@ -84,23 +84,23 @@ export default function ContactPage() {
                 <h3 className="text-2xl font-bold mb-4">Why Choose Binfab?</h3>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-2">
-                    <span className="text-[#1a2847] font-bold mt-1">✓</span>
+                    <span className="text-[#2b4c9e] font-bold mt-1">✓</span>
                     <span>Over 20 years experience in waste bin manufacturing</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-[#1a2847] font-bold mt-1">✓</span>
+                    <span className="text-[#2b4c9e] font-bold mt-1">✓</span>
                     <span>Locally sourced and manufactured in Australia</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-[#1a2847] font-bold mt-1">✓</span>
+                    <span className="text-[#2b4c9e] font-bold mt-1">✓</span>
                     <span>Quality products at competitive prices</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-[#1a2847] font-bold mt-1">✓</span>
+                    <span className="text-[#2b4c9e] font-bold mt-1">✓</span>
                     <span>Fast turnaround times</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-[#1a2847] font-bold mt-1">✓</span>
+                    <span className="text-[#2b4c9e] font-bold mt-1">✓</span>
                     <span>Custom solutions available</span>
                   </li>
                 </ul>

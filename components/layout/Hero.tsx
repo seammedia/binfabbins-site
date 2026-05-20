@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button'
 
 export function Hero() {
   return (
-    <section className="relative bg-gradient-to-b from-[#1a2847] to-black py-24 px-4">
+    <section className="relative bg-gradient-to-b from-[#2b4c9e] to-black py-24 px-4">
       <div className="container mx-auto text-center">
         <div className="mb-8 flex justify-center">
           <div className="relative border-4 border-white bg-black px-12 py-16 max-w-3xl">
@@ -23,7 +23,7 @@ export function Hero() {
           <Button
             size="lg"
             variant="outline"
-            className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-[#1a2847] transition-colors text-lg px-8 py-6 rounded-full"
+            className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-[#2b4c9e] transition-colors text-lg px-8 py-6 rounded-full"
             asChild
           >
             <a href="tel:0478598242" className="flex items-center gap-3">

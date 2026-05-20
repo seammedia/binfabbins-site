@@ -79,7 +79,7 @@ export function ContactForm() {
 
           <button
             type="submit"
-            className="w-full inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-[#1a2847] text-white hover:bg-[#2d3748] h-10 px-4 py-2"
+            className="w-full inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-[#2b4c9e] text-white hover:bg-[#3558ae] h-10 px-4 py-2"
           >
             Send Message
           </button>

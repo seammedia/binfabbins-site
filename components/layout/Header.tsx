@@ -13,7 +13,7 @@ const navigation = [
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-[#1a2847] border-gray-700">
+    <header className="sticky top-0 z-50 w-full border-b bg-[#2b4c9e] border-gray-700">
       <nav className="container mx-auto flex h-16 items-center justify-between px-4">
         <div className="flex items-center gap-8">
           <Link href="/" className="flex items-center gap-2">
@@ -38,7 +38,7 @@ export function Header() {
         <Button
           variant="outline"
           size="sm"
-          className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-[#1a2847] transition-colors"
+          className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-[#2b4c9e] transition-colors"
           asChild
         >
           <a href="tel:0478598242" className="flex items-center gap-2">

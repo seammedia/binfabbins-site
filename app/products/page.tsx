@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function ProductsPage() {
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="bg-[#1a2847] text-white py-16 px-4">
+      <div className="bg-[#2b4c9e] text-white py-16 px-4">
         <div className="container mx-auto">
           <h1 className="text-5xl font-bold mb-4">Our Products</h1>
           <p className="text-xl text-gray-300 max-w-3xl">
@@ -39,7 +39,7 @@ export default function ProductsPage() {
           </p>
           <a
             href="tel:0478598242"
-            className="inline-block bg-[#1a2847] text-white px-8 py-4 rounded-lg hover:bg-[#2d3748] transition-colors text-lg font-medium"
+            className="inline-block bg-[#2b4c9e] text-white px-8 py-4 rounded-lg hover:bg-[#3558ae] transition-colors text-lg font-medium"
           >
             Call 0478 598 242
           </a>

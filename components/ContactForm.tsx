@@ -1,8 +1,17 @@
 'use client'
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { CONTACT_SUBMISSION_STORAGE_KEY } from '@/lib/contact'
 
 export function ContactForm() {
+  function markSubmissionStarted() {
+    try {
+      window.sessionStorage.setItem(CONTACT_SUBMISSION_STORAGE_KEY, String(Date.now()))
+    } catch {
+      // A storage restriction must never prevent the actual Formspree submit.
+    }
+  }
+
   return (
     <Card className="max-w-2xl mx-auto">
       <CardHeader>
@@ -15,12 +24,13 @@ export function ContactForm() {
         <form
           action="https://formspree.io/f/mzzybwpw"
           method="POST"
+          onSubmit={markSubmissionStarted}
           className="space-y-4"
         >
           {/* Hidden fields for Formspree */}
           <input type="hidden" name="_subject" value="Website Enquiry - Binfab Bins" />
           <input type="text" name="_gotcha" style={{ display: 'none' }} />
-          <input type="hidden" name="_next" value="https://binfabbins.com.au/thank-you" />
+          <input type="hidden" name="_next" value="https://www.binfabbins.com.au/thank-you" />
 
           <div>
             <label htmlFor="name" className="block text-sm font-medium mb-2">

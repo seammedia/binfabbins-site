@@ -11,11 +11,10 @@ export function GoogleAdsTag() {
       <Script id="google-ads-bootstrap" strategy="afterInteractive">
         {`
           window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          window.gtag = window.gtag || gtag;
-          gtag('js', new Date());
-          gtag('config', '${GOOGLE_ADS_ID}');
-          gtag('config', '${GOOGLE_ADS_PHONE_SEND_TO}', {
+          window.gtag = window.gtag || function(){window.dataLayer.push(arguments);};
+          window.gtag('js', new Date());
+          window.gtag('config', '${GOOGLE_ADS_ID}');
+          window.gtag('config', '${GOOGLE_ADS_PHONE_SEND_TO}', {
             'phone_conversion_number': '${PHONE_CONVERSION_NUMBER}'
           });
         `}

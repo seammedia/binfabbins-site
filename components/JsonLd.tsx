@@ -1,3 +1,5 @@
+import { SITE_URL } from '@/lib/site'
+
 export interface LocalBusinessSchema {
   '@context': string
   '@type': string
@@ -35,7 +37,7 @@ export const localBusinessSchema: LocalBusinessSchema = {
   '@type': 'LocalBusiness',
   name: 'Binfab Bins',
   description: 'Quality waste bin manufacturers serving Australia. Specializing in hooklift bins, marrell bins, forklift bins and more. Over 20 years experience.',
-  url: process.env.NEXT_PUBLIC_SITE_URL || 'https://binfabbins.com.au',
+  url: SITE_URL,
   telephone: '+61478598242',
   email: 'mark@binfab.net',
   address: {

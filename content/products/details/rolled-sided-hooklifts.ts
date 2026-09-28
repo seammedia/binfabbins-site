@@ -1,4 +1,6 @@
-export const rolledSidedHooklifts = {
+import type { ProductDetail } from './types'
+
+export const rolledSidedHooklifts: ProductDetail = {
   slug: 'rolled-sided-hooklifts',
   title: 'Rolled Sided Hooklift Bins',
   subtitle: 'Australian Made, Heavy Duty, Reinforced Bins',

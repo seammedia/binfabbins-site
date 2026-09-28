@@ -121,16 +121,23 @@ export function QuoteForm() {
       </button>
 
       <p className="text-xs text-gray-500">
-        We only use your details to answer this enquiry. See our{' '}
-        <Link href="/legal/privacy" className="underline hover:text-gray-700">
-          privacy policy
-        </Link>
-        . Prefer to talk? Call{' '}
-        <a href="tel:0478598242" className="underline hover:text-gray-700">
-          0478 598 242
-        </a>
-        .
+        We only use your details to answer this enquiry.
       </p>
+
+      <div className="flex flex-wrap items-center gap-x-5 gap-y-0 text-xs text-gray-600">
+        <Link
+          href="/legal/privacy"
+          className="inline-flex min-h-[44px] items-center underline hover:text-gray-800"
+        >
+          Privacy policy
+        </Link>
+        <a
+          href="tel:0478598242"
+          className="inline-flex min-h-[44px] items-center underline hover:text-gray-800"
+        >
+          Prefer to talk? Call 0478 598 242
+        </a>
+      </div>
     </form>
   )
 }

@@ -104,7 +104,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
             <div className="order-1 lg:col-span-3 lg:row-start-1">
               <Link
                 href="/products"
-                className="inline-flex items-center gap-2 text-blue-100 hover:text-white mb-5 transition-colors text-sm"
+                className="inline-flex min-h-[44px] items-center gap-2 text-blue-100 hover:text-white mb-4 transition-colors text-sm"
               >
                 <ArrowLeft className="h-4 w-4" />
                 Back to Products

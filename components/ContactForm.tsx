@@ -1,10 +1,10 @@
 'use client'
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { FORMSPREE_ENDPOINT, useFormspreeSubmit } from '@/lib/formspree'
+import { ENQUIRY_ENDPOINT, useEnquirySubmit } from '@/lib/enquiry'
 
 export function ContactForm() {
-  const { onSubmit, sending, failed } = useFormspreeSubmit()
+  const { onSubmit, sending, failed } = useEnquirySubmit()
 
   return (
     <Card className="max-w-2xl mx-auto">
@@ -16,15 +16,14 @@ export function ContactForm() {
       </CardHeader>
       <CardContent>
         <form
-          action={FORMSPREE_ENDPOINT}
+          action={ENQUIRY_ENDPOINT}
           method="POST"
           onSubmit={onSubmit}
           className="space-y-4"
         >
           {/* Hidden fields for Formspree */}
-          <input type="hidden" name="_subject" value="Website Enquiry - Binfab Bins" />
+          <input type="hidden" name="form" value="Contact page" />
           <input type="text" name="_gotcha" style={{ display: 'none' }} />
-          <input type="hidden" name="_next" value="https://www.binfabbins.com.au/thank-you" />
 
           <div>
             <label htmlFor="name" className="block text-sm font-medium mb-2">
@@ -47,7 +46,7 @@ export function ContactForm() {
             <input
               type="email"
               id="email"
-              name="_replyto"
+              name="email"
               required
               placeholder="your.email@example.com"
               className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"

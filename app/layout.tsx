@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { GoogleAdsTag } from "@/components/GoogleAdsTag";
+import { AttributionCapture } from "@/components/AttributionCapture";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -32,6 +33,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.variable} font-sans antialiased`}>
         <GoogleAdsTag />
+        <AttributionCapture />
         <Header />
         <main>{children}</main>
         <Footer />

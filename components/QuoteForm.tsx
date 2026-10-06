@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { FORMSPREE_ENDPOINT, useFormspreeSubmit } from '@/lib/formspree'
+import { ENQUIRY_ENDPOINT, useEnquirySubmit } from '@/lib/enquiry'
 
 const fieldClass =
   'flex h-12 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-base text-gray-900 placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2b4c9e] focus-visible:ring-offset-1'
@@ -10,16 +10,16 @@ const labelClass = 'block text-sm font-semibold text-gray-800 mb-1.5'
 /**
  * On-page quote form for product landing pages.
  *
- * Posts to the same Formspree endpoint as the main contact form, in the
+ * Posts to the same /api/enquiry route as the main contact form, in the
  * background, and goes to /thank-you once Formspree accepts it, so the Google
- * Ads enquiry conversion there counts these leads too (see lib/formspree.ts).
+ * Ads enquiry conversion there counts these leads too (see lib/enquiry.ts).
  */
 export function QuoteForm() {
-  const { onSubmit, sending, failed } = useFormspreeSubmit()
+  const { onSubmit, sending, failed } = useEnquirySubmit()
 
   return (
     <form
-      action={FORMSPREE_ENDPOINT}
+      action={ENQUIRY_ENDPOINT}
       method="POST"
       onSubmit={onSubmit}
       className="rounded-xl bg-white p-5 sm:p-6 shadow-lg text-gray-900 space-y-4 text-left"
@@ -31,9 +31,7 @@ export function QuoteForm() {
           delivery.
         </p>
       </div>
-
-      <input type="hidden" name="_subject" value="Website Quote Request - Hook Lift Bins" />
-      <input type="hidden" name="_next" value="https://www.binfabbins.com.au/thank-you" />
+      <input type="hidden" name="form" value="Hook lift bins quote" />
       <input
         type="text"
         name="_gotcha"
@@ -82,7 +80,7 @@ export function QuoteForm() {
           <input
             type="email"
             id="quote-email"
-            name="_replyto"
+            name="email"
             required
             autoComplete="email"
             placeholder="you@company.com.au"

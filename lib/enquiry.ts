@@ -3,23 +3,20 @@
 import { useRouter } from 'next/navigation'
 import { useState, type FormEvent } from 'react'
 import { CONTACT_SUBMISSION_STORAGE_KEY } from '@/lib/contact'
+import { readAttribution } from '@/lib/attribution'
 
-export const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mzzybwpw'
+export const ENQUIRY_ENDPOINT = '/api/enquiry'
 
 /**
- * Submit a form to Formspree in the background and go to /thank-you only after
- * Formspree confirms it received the enquiry.
+ * Submit an enquiry to this site's /api/enquiry route, which sends it straight to
+ * BinFab (mark@binfab.net) through the Seam Media email relay. Only after delivery is
+ * confirmed does the visitor go to /thank-you, where the Google Ads enquiry conversion
+ * fires. Failures stay on the page with an error, so a failed send is never counted.
  *
- * Why (7 Oct 2026): the forms used to rely on Formspree's `_next` redirect to reach
- * /thank-you, where the Google Ads enquiry conversion fires. Formspree's custom
- * redirect is a paid-plan feature ("Available on: Personal, Professional, Business
- * plans"), so on the free plan visitors land on Formspree's own page and the
- * conversion never fires. Background (AJAX) submission works on every plan, and the
- * conversion now depends on Formspree's own acceptance, not on a redirect.
- *
- * The form keeps its native action/method, so it still posts if JavaScript fails.
+ * The form keeps action="/api/enquiry" method="POST", so it still sends (and redirects)
+ * if JavaScript fails. Replaced Formspree on 7 Oct 2026.
  */
-export function useFormspreeSubmit() {
+export function useEnquirySubmit() {
   const router = useRouter()
   const [status, setStatus] = useState<'idle' | 'sending' | 'error'>('idle')
 
@@ -29,13 +26,14 @@ export function useFormspreeSubmit() {
     const form = event.currentTarget
     setStatus('sending')
     try {
-      const response = await fetch(FORMSPREE_ENDPOINT, {
+      const data = Object.fromEntries(new FormData(form)) as Record<string, string>
+      const response = await fetch(ENQUIRY_ENDPOINT, {
         method: 'POST',
-        body: new FormData(form),
-        headers: { Accept: 'application/json' },
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ ...data, ...readAttribution(), page: window.location.pathname }),
       })
       const result = (await response.json().catch(() => ({}))) as { ok?: boolean }
-      if (!response.ok || result.ok === false) throw new Error(`Formspree ${response.status}`)
+      if (!response.ok || result.ok === false) throw new Error(`Enquiry ${response.status}`)
       try {
         // Marks a real, accepted submission; /thank-you fires the Ads conversion only then.
         window.sessionStorage.setItem(CONTACT_SUBMISSION_STORAGE_KEY, String(Date.now()))

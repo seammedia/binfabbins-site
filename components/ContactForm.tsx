@@ -1,16 +1,10 @@
 'use client'
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { CONTACT_SUBMISSION_STORAGE_KEY } from '@/lib/contact'
+import { FORMSPREE_ENDPOINT, useFormspreeSubmit } from '@/lib/formspree'
 
 export function ContactForm() {
-  function markSubmissionStarted() {
-    try {
-      window.sessionStorage.setItem(CONTACT_SUBMISSION_STORAGE_KEY, String(Date.now()))
-    } catch {
-      // A storage restriction must never prevent the actual Formspree submit.
-    }
-  }
+  const { onSubmit, sending, failed } = useFormspreeSubmit()
 
   return (
     <Card className="max-w-2xl mx-auto">
@@ -22,9 +16,9 @@ export function ContactForm() {
       </CardHeader>
       <CardContent>
         <form
-          action="https://formspree.io/f/mzzybwpw"
+          action={FORMSPREE_ENDPOINT}
           method="POST"
-          onSubmit={markSubmissionStarted}
+          onSubmit={onSubmit}
           className="space-y-4"
         >
           {/* Hidden fields for Formspree */}
@@ -87,11 +81,19 @@ export function ContactForm() {
             />
           </div>
 
+          {failed && (
+            <p role="alert" className="text-sm font-medium text-red-600">
+              Sorry, your message didn&apos;t send. Please try again or call us on{' '}
+              <a href="tel:0478598242" className="underline">0478 598 242</a>.
+            </p>
+          )}
+
           <button
             type="submit"
+            disabled={sending}
             className="w-full inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-[#2b4c9e] text-white hover:bg-[#3558ae] h-10 px-4 py-2"
           >
-            Send Message
+            {sending ? 'Sending...' : 'Send Message'}
           </button>
         </form>
       </CardContent>

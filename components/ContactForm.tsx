@@ -21,7 +21,6 @@ export function ContactForm() {
           onSubmit={onSubmit}
           className="space-y-4"
         >
-          {/* Hidden fields for Formspree */}
           <input type="hidden" name="form" value="Contact page" />
           <input type="text" name="_gotcha" style={{ display: 'none' }} />
 

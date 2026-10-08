@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { checkEnquiryToken, issueEnquiryToken } from '@/lib/enquiry-token'
 
 // Website enquiries go straight to BinFab (7 Oct 2026, replacing Formspree). This route
 // validates the submission and passes it server to server to the shared Seam Media email
@@ -9,8 +10,19 @@ const RELAY_URL = 'https://thesoutheastplumber.com.au/api/binfab-lead'
 const FIELDS = ['name', 'email', 'phone', 'message', 'form', 'page',
   'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'gclid', 'gbraid', 'wbraid'] as const
 
+// The exact message the bot campaign sends; no customer writes it word for word.
+const SPAM_MESSAGE = /^i would like more information\.? please contact me by email\b/i
+
+export const dynamic = 'force-dynamic'
+
 const reply = (status: number, body: object) =>
   NextResponse.json(body, { status, headers: { 'Cache-Control': 'no-store' } })
+
+export async function GET() {
+  const secret = process.env.BINFAB_FORM_RELAY_SECRET?.trim()
+  if (!secret) return reply(503, { ok: false })
+  return reply(200, { token: issueEnquiryToken(secret) })
+}
 
 export async function POST(request: NextRequest) {
   const secret = process.env.BINFAB_FORM_RELAY_SECRET?.trim()
@@ -24,8 +36,21 @@ export async function POST(request: NextRequest) {
   } catch {
     return reply(400, { ok: false })
   }
-  // Honeypot: report success to bots without sending anything.
-  if (raw._gotcha) return isJson ? reply(200, { ok: true }) : NextResponse.redirect(new URL('/thank-you', request.url), 303)
+  const rejected = (reason: string) => {
+    console.info('[enquiry] blocked', { reason, isJson })
+    return isJson ? reply(400, { ok: false }) : NextResponse.redirect(new URL('/contact?error=1', request.url), 303)
+  }
+  // Report success to anything that looks like a bot, without sending it, and flag it so
+  // the browser does not count it as an Ads conversion.
+  const filtered = (reason: string) => {
+    console.info('[enquiry] filtered', { reason, isJson })
+    return isJson ? reply(200, { ok: true, filtered: true }) : NextResponse.redirect(new URL('/thank-you', request.url), 303)
+  }
+  if (raw._gotcha) return filtered('honeypot')
+  const token = checkEnquiryToken(raw._token, secret)
+  if (token === 'invalid') return rejected('no valid token')
+  if (token === 'too-fast') return filtered('too fast')
+  if (typeof raw.message === 'string' && SPAM_MESSAGE.test(raw.message.trim())) return filtered('spam message')
 
   const payload: Record<string, string> = { submitted_at: new Date().toISOString() }
   for (const key of FIELDS) {

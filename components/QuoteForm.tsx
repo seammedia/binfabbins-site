@@ -11,7 +11,7 @@ const labelClass = 'block text-sm font-semibold text-gray-800 mb-1.5'
  * On-page quote form for product landing pages.
  *
  * Posts to the same /api/enquiry route as the main contact form, in the
- * background, and goes to /thank-you once Formspree accepts it, so the Google
+ * background, and goes to /thank-you once the enquiry is delivered, so the Google
  * Ads enquiry conversion there counts these leads too (see lib/enquiry.ts).
  */
 export function QuoteForm() {
